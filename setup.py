@@ -2,7 +2,7 @@
 
 from setuptools import setup, find_packages
 
-dependencies = []
+dependencies = ['requests']
 
 test_dependencies = []
 
@@ -20,6 +20,6 @@ setup(
     packages=find_packages(),
     install_requires=dependencies,
     tests_require=test_dependencies,
-    scripts=['trail/cli/trail'],
+    scripts=['trail/cli/trail', 'trail/cli/trail.bat'],
     zip_safe=False
 )
