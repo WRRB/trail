@@ -1,16 +1,18 @@
 import requests
 
-BASE = 'https://api.irail.be'
-HEADERS = {'Accept': 'application/json'}
+
+def base():
+    return 'https://api.irail.be'
 
 
-def get_connections(start, end, date):
+def headers():
+    return {'Accept': 'application/json'}
+
+
+def connections(start, end, date):
     url = 'connections/?to={}&from={}&fast=true&timesel=departure&date={}&format=json'.format(start, end, date)
-    response = requests.get(url='{}/{}'.format(BASE, url), headers=HEADERS)
+    response = requests.get(url='{}/{}'.format(base(), url), headers=headers())
     if response.status_code == 200:
         return response.json()
     else:
         print response.status_code
-
-
-
