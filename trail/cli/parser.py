@@ -1,10 +1,19 @@
 from argparse import ArgumentParser
 
+from datetime import datetime
+
 from trail.irail_gw import connections
 
 
 def status(args):
-    conn = connections(start='Leuven', end='Halle', date='110419')
+    now = datetime.now()
+    params = {'to': 'Halle',
+              'from': 'Leuven',
+              'fast': 'true',
+              'timesel': 'departure',
+              'date': now.strftime('%d%m%y'),
+              'format': 'json'}
+    conn = connections(params)
     for train in conn.get('connection'):
         print train
         print ''
