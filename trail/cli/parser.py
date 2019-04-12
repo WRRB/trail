@@ -1,21 +1,12 @@
 from argparse import ArgumentParser
 
-from datetime import datetime
-
-from trail import irail_gw, alert
+from trail import show, irail
 
 
 def status(args):
-    now = datetime.now()
-    params = {'to': 'Halle',
-              'from': 'Leuven',
-              'fast': 'true',
-              'timesel': 'departure',
-              'date': now.strftime('%d%m%y'),
-              'format': 'json'}
-    conn = irail_gw.get('connections', params)
-    for train in conn.get('connection'):
-        alert.delay(train)
+    station = args.station.encode('utf-8')
+    board = irail.live_board(station)
+    show.print_to_console(board)
 
 
 def get_parser():
@@ -24,6 +15,7 @@ def get_parser():
 
     ht = 'Usage: status'
     status_cmd = sub.add_parser('status', help=ht)
+    status_cmd.add_argument('station', help='Name of station you want to see the status from')
     status_cmd.set_defaults(func=status)
 
     return ap
