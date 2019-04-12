@@ -4,7 +4,7 @@ import pytz
 
 def print_to_console(board):
     dep = board.get('departures').get('departure')
-    fmt = '{}  {}\t{}'
+    fmt = '{}   {} {}'
     for d in dep:
         direction = d.get('station')
         late = int(d.get('delay'))/60
