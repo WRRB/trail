@@ -24,8 +24,10 @@ def status_check(success):
 
 
 @status_check(success=200)
-def connections(request_params):
+def get(endpoint, request_params):
     request_params_list = ['{}={}'.format(k, v) for k, v in request_params.iteritems()]
-    url = 'connections/?{}'.format("&".join(request_params_list))
+    url = '{}/?{}'.format(endpoint, "&".join(request_params_list))
     return requests.get(url='{}/{}'.format(base(), url), headers=headers())
+
+
 

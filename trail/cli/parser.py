@@ -2,7 +2,7 @@ from argparse import ArgumentParser
 
 from datetime import datetime
 
-from trail.irail_gw import connections
+from trail import irail_gw, alert
 
 
 def status(args):
@@ -13,10 +13,9 @@ def status(args):
               'timesel': 'departure',
               'date': now.strftime('%d%m%y'),
               'format': 'json'}
-    conn = connections(params)
+    conn = irail_gw.get('connections', params)
     for train in conn.get('connection'):
-        print train
-        print ''
+        alert.delay(train)
 
 
 def get_parser():
