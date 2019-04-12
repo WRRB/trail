@@ -2,9 +2,9 @@
 
 from setuptools import setup, find_packages
 
-dependencies = ['requests']
+dependencies = ['requests', 'pytz']
 
-test_dependencies = []
+test_dependencies = ['pytest']
 
 setup(
     name='trail',
@@ -19,7 +19,9 @@ setup(
     package_data={},
     packages=find_packages(),
     install_requires=dependencies,
-    tests_require=test_dependencies,
+    extras_require={
+        'dev': test_dependencies
+    },
     scripts=['trail/cli/trail', 'trail/cli/trail.bat'],
     zip_safe=False
 )
