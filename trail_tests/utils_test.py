@@ -1,4 +1,4 @@
-from trail.show import format_time
+from trail.utils import format_time
 
 
 def test_format_time():
