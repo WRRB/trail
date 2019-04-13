@@ -4,7 +4,7 @@ from trail import show, irail
 
 
 def status(args):
-    station = args.station.encode('utf-8')
+    station = args.station
     board = irail.live_board(station)
     show.print_to_console(board)
 
@@ -12,6 +12,7 @@ def status(args):
 def get_parser():
     ap = ArgumentParser()
     sub = ap.add_subparsers(help='sub-command help')
+    sub.required = True
 
     ht = 'Usage: status'
     status_cmd = sub.add_parser('status', help=ht)

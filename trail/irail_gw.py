@@ -1,5 +1,6 @@
 import requests
 import logging
+import six
 
 
 def base():
@@ -18,16 +19,14 @@ def status_check(success):
             if sc == success:
                 return response.json()
             else:
-                logging.error('Status check failed\n\treceived: {}\n\tmessage: {}'.format(sc, response.content))
+                raise requests.exceptions.HTTPError(
+                    'Status check failed\n\treceived: {}\n\tmessage: {}'.format(sc, response.content))
         return arg_wrapper
     return sc_decorator
 
 
 @status_check(success=200)
 def get(endpoint, request_params):
-    request_params_list = ['{}={}'.format(k, v) for k, v in request_params.iteritems()]
+    request_params_list = ['{}={}'.format(k, v) for k, v in six.iteritems(request_params)]
     url = '{}/?{}'.format(endpoint, "&".join(request_params_list))
     return requests.get(url='{}/{}'.format(base(), url), headers=headers())
-
-
-

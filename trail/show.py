@@ -1,3 +1,4 @@
+from __future__ import unicode_literals
 from datetime import datetime
 import pytz
 
@@ -11,7 +12,7 @@ def print_to_console(board):
         delay_indicator = '+{}'.format(late) if late else None
         padding = '  '
         time = format_time(int(d.get('time')))
-        print fmt.format(delay_indicator or padding, time, direction.encode('utf-8'))
+        print(fmt.format(delay_indicator or padding, time, direction))
 
 
 def format_time(timestamp):

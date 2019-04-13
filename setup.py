@@ -2,7 +2,7 @@
 
 from setuptools import setup, find_packages
 
-dependencies = ['requests', 'pytz']
+dependencies = ['requests', 'pytz', 'six']
 
 test_dependencies = ['pytest']
 
