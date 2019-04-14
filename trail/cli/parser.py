@@ -1,14 +1,14 @@
 from argparse import ArgumentParser
 
-from trail import show, irail, db, model
+from trail import irail
+from trail.model import LiveBoard
 
 
 def status(args):
     station = args.station
-    board = irail.live_board(station)
-    records = model.create_board_records(board)
-    db.add_all(records)
-    show.print_to_console()
+    raw_board = irail.live_board(station)
+    board = LiveBoard.from_raw(raw_board)
+    board.show()
 
 
 def get_parser():

@@ -12,3 +12,7 @@ Base = declarative_base()
 def add_all(records):
     session.add_all(records)
     session.commit()
+
+
+def find_all(entity):
+    return session.query(entity).all()
