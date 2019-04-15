@@ -26,7 +26,7 @@ Base.metadata.create_all(engine)
 
 class LiveBoard(object):
     def __init__(self, records):
-        self._records = records
+        self.records = records
 
     @property
     def records(self):
@@ -37,6 +37,7 @@ class LiveBoard(object):
     @records.setter
     def records(self, records):
         db.add_all(records)
+        self._records = records
 
     @classmethod
     def from_raw(cls, raw_board):
