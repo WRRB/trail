@@ -9,7 +9,7 @@ def status(args):
     raw_board = irail.live_board(station)
     board = LiveBoard.from_raw(raw_board)
     board.show()
-
+#Dag Wim, ik ben Jan
 
 def get_parser():
     ap = ArgumentParser()
